@@ -8,11 +8,11 @@ def load_images_from_folder(folder):
         img = cv2.imread(os.path.join(folder,filename))
         if img is not None:
             imgpq = cv2.resize(img,(32,32))
-            file_name = "./F/F" + str(i) + ".jpg"
+            file_name = "./Y/Y" + str(i) + ".jpg"
             cv2.imwrite(file_name, imgpq)
             i+=1
 
-folder = "./F/"
+folder = "./Y/"
 load_images_from_folder(folder)
 
 
