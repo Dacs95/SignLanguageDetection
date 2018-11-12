@@ -81,5 +81,7 @@ def training():
 	                  (epoch + 1, i + 1, running_loss / 2000))
 	            running_loss = 0.0
 
-if _name_ == '_main_':
+if __name__ == '__main__':
     training()
+
+print('Finished Training')
