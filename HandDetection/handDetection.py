@@ -148,30 +148,34 @@ if __name__ == "__main__":
                     cv2.line(roi,start, end, [0,255,0], 2)
                 l+=1
             #print corresponding gestures which are in their ranges
-                #print(l)
+                print(l)
+                print("ratio: ",arearatio)
+                print("cnt: ",areacnt)
                 font = cv2.FONT_HERSHEY_SIMPLEX
                 if l==1:
                     if areacnt<2000:
                         
                         cv2.putText(frame,'Put hand in the box',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                     else:
-                        if arearatio<12:
-                            cv2.putText(frame,'0',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
+                        if arearatio<=4 and arearatio>0:
+                            cv2.putText(frame,'S',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                         elif arearatio<17.5:
-                            cv2.putText(frame,'Best of luck',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
+                            cv2.putText(frame,'B',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                    
                         else:
                             cv2.putText(frame,'1',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                     
                 elif l==2:
-                    cv2.putText(frame,'2',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
-            
+                    if areacnt < 26:
+                        cv2.putText(frame,'Y',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
+                    else:
+                        cv2.putText(frame,'V',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                 elif l==3:
          
                     if arearatio<27:
                         cv2.putText(frame,'3',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                     else:
-                        cv2.putText(frame,'ok',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
+                        cv2.putText(frame,'W',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                     
                 elif l==4:
                     cv2.putText(frame,'4',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
@@ -204,6 +208,9 @@ if __name__ == "__main__":
         if keypress == ord("q"):
             break
 
+        if keypress == ord("r"):
+            run_avg(grey,aWeight)
+            break
 # free up memory
 camera.release()
 cv2.destroyAllWindows()
