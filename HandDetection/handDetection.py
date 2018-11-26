@@ -148,26 +148,35 @@ if __name__ == "__main__":
                     cv2.line(roi,start, end, [0,255,0], 2)
                 l+=1
             #print corresponding gestures which are in their ranges
-                print(l)
-                print("ratio: ",arearatio)
-                print("cnt: ",areacnt)
+                #print(l)
+                #print("ratio: ",arearatio)
+                #print("cnt: ",areacnt)
                 font = cv2.FONT_HERSHEY_SIMPLEX
                 if l==1:
                     if areacnt<2000:
                         
                         cv2.putText(frame,'Put hand in the box',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                     else:
-                        if arearatio<=4 and arearatio>0:
+                        if arearatio<=4 and areacnt<6000:
                             cv2.putText(frame,'S',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
-                        elif arearatio<17.5:
+                        elif arearatio<=4 and arearatio>0 and areacnt>=7000:
                             cv2.putText(frame,'B',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
-                   
+                        elif arearatio<=5 and areacnt<8500:
+                            cv2.putText(frame,'E',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
+                        elif arearatio>11 and arearatio<16:
+                            cv2.putText(frame,'A',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
+                        elif arearatio>=16 and arearatio<21:
+                            cv2.putText(frame,'D',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA) 
+
+                        elif arearatio>26:
+                            cv2.putText(frame,'Y',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                         else:
-                            cv2.putText(frame,'1',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
-                    
+                            cv2.putText(frame,'',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                 elif l==2:
-                    if areacnt < 26:
-                        cv2.putText(frame,'Y',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
+                    if arearatio<18 and areacnt<8000:
+                        cv2.putText(frame,'F',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
+                    elif arearatio<30 and areacnt<7500:
+                        cv2.putText(frame,'C',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                     else:
                         cv2.putText(frame,'V',(0,50), font, 2, (0,0,255), 3, cv2.LINE_AA)
                 elif l==3:
